@@ -1,43 +1,41 @@
+import logic.TaskManager;
+import model.Epic;
+import model.Status;
+
 public class Main {
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         TaskManager taskManager = new TaskManager();
 
         System.out.println("Поехали!");
-        // создание задач
-        taskManager.createTask("Задача1", "описание1");
-        taskManager.createTask("Задача2", "описание2");
-        taskManager.createEpic("Эпик1", "описание1");
-        taskManager.createSubtask("Подзадача1", "описание1", "Эпик1" );
-        taskManager.createSubtask("Подзадача2", "описание2", "Эпик1");
-        taskManager.createEpic("Эпик2", "описание2");
-        taskManager.createSubtask("Подзадача3", "описание3", "Эпик2" );
 
+        taskManager.createTask("Задача1", "Описание задачи1");
+        taskManager.createTask("Задача2", "Описание задачи2");
+        taskManager.createEpic("Эпик1", "Описание эпика1");
+        taskManager.createEpic("Эпик2", "Описание эпика2");
+        taskManager.createSubtask("Подзадача 1", "Описание подзадачи 1", taskManager.epics.get(1));
+        taskManager.createSubtask("Подзадача 2", "Описание подзадачи 2", taskManager.epics.get(1));
+        taskManager.createSubtask("Подзадача 3", "Описание подзадачи 3", taskManager.epics.get(2));
 
-        // распечатать задачи/эпики/подзадачи
-        taskManager.printAllTasks();
-        taskManager.printAllEpics();
-        taskManager.printAllSubtasks();
+        System.out.println(taskManager.tasks);
+        System.out.println(taskManager.epics);
+        System.out.println(taskManager.subtasks);
 
-        // Иземенение и проверка
-        System.out.println("-".repeat(50));
-        Task newTask = new Task ("Задача1", "Описание1", Status.IN_PROGRESS);
-        taskManager.updateTask(1, newTask);
-        Subtask newSubtask = new Subtask("Подзадача1", "Описание1", Status.DONE, "Эпик1");
-        taskManager.updateSubtask(2, newSubtask);
+        taskManager.updateTaskStatus(1, Status.IN_PROGRESS);
+        taskManager.updateSubtaskStatus(3, Status.IN_PROGRESS);
 
-        taskManager.printAllTasks();
-        taskManager.printAllEpics();
-        taskManager.printAllSubtasks();
+        System.out.println("_".repeat(50));
+        System.out.println(taskManager.tasks);
+        System.out.println(taskManager.epics);
+        System.out.println(taskManager.subtasks);
 
-        //Удаление
-        System.out.println("-".repeat(50));
         taskManager.removeTask(1);
-        taskManager.removeEpic(2);
+        taskManager.removeEpic(1);
 
-        taskManager.printAllTasks();
-        taskManager.printAllEpics();
-        taskManager.printAllSubtasks();
+        System.out.println("_".repeat(50));
+        System.out.println(taskManager.tasks);
+        System.out.println(taskManager.epics);
+        System.out.println(taskManager.subtasks);
+
     }
 }
