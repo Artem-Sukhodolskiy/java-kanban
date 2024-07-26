@@ -7,15 +7,12 @@ public class Task {
     private int id;
     private String name;
     private String description;
-    public Status status = Status.NEW;
-
-
+    protected Status status = Status.NEW;
 
     public Task(String name, String description) {
         this.name = name;
         this.description = description;
     }
-
 
     public void setStatus(Status status) {
         this.status = status;
@@ -23,6 +20,14 @@ public class Task {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override
@@ -45,9 +50,5 @@ public class Task {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, description, status);
-    }
-
-    public int getId() {
-        return id;
     }
 }
