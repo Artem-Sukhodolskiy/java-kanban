@@ -1,13 +1,16 @@
-import logic.TaskManager;
+import logic.*;
 import model.Epic;
 import model.Status;
 import model.Subtask;
 import model.Task;
 
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
-        TaskManager taskManager = new TaskManager();
+
+        InMemoryTaskManager taskManager = new InMemoryTaskManager();
 
         System.out.println("Поехали!");
 
@@ -31,7 +34,7 @@ public class Main {
         System.out.println(taskManager.epics);
         System.out.println(taskManager.subtasks);
 
-        taskManager.updateTaskStatus(1, Status.IN_PROGRESS);
+        taskManager.updateTaskStatus(2, Status.IN_PROGRESS);
         taskManager.updateSubtaskStatus(3, Status.IN_PROGRESS);
 
         System.out.println("_".repeat(50));
@@ -39,13 +42,20 @@ public class Main {
         System.out.println(taskManager.epics);
         System.out.println(taskManager.subtasks);
 
-        taskManager.removeTask(1);
-        taskManager.removeEpic(1);
+        //taskManager.removeTask(1);
+        //taskManager.removeEpic(1);
 
         System.out.println("_".repeat(50));
         System.out.println(taskManager.tasks);
         System.out.println(taskManager.epics);
         System.out.println(taskManager.subtasks);
 
+        taskManager.checkIDTask(1);
+        taskManager.checkIDTask(2);
+        taskManager.checkIDEpic(2);
+
+        System.out.println("_".repeat(50));
+
+        System.out.println(taskManager.inMemoryHistoryManager.getHistory());
     }
 }
