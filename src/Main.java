@@ -4,13 +4,12 @@ import model.Status;
 import model.Subtask;
 import model.Task;
 
-import java.util.List;
-
 public class Main {
 
     public static void main(String[] args) {
 
-        InMemoryTaskManager taskManager = new InMemoryTaskManager();
+        InMemoryHistoryManager historyManager = new InMemoryHistoryManager();
+        InMemoryTaskManager taskManager = new InMemoryTaskManager(historyManager);
 
         System.out.println("Поехали!");
 

@@ -6,10 +6,10 @@ public class Managers {
     private static logic.InMemoryHistoryManager InMemoryHistoryManager;
 
     public static TaskManager getDefault(){
-        return TaskManager;
+        return new InMemoryTaskManager(InMemoryHistoryManager);
     }
 
-    public static InMemoryHistoryManager getDefaultHistory(){
-        return InMemoryHistoryManager;
+    public static HistoryManager getDefaultHistory(){
+        return new InMemoryHistoryManager();
     }
 }

@@ -3,7 +3,6 @@ import logic.InMemoryTaskManager;
 import model.Epic;
 import model.Subtask;
 import model.Task;
-import org.junit.jupiter.api.Test;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,34 +10,38 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TaskTest {
 
-    @Test
+    @org.junit.jupiter.api.Test
     void checkIdTask() {
-        InMemoryTaskManager taskManager = new InMemoryTaskManager();
+        InMemoryHistoryManager inMemoryHistoryManager = new InMemoryHistoryManager();
+        InMemoryTaskManager taskManager = new InMemoryTaskManager(inMemoryHistoryManager);
         Task task1 = new Task("Задача1", "Описание задачи1");
         taskManager.createTask(task1);
         assertEquals(taskManager.checkIDTask(1), taskManager.checkIDTask(1));
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     void checkIdEpic() {
-        InMemoryTaskManager taskManager = new InMemoryTaskManager();
+        InMemoryHistoryManager inMemoryHistoryManager = new InMemoryHistoryManager();
+        InMemoryTaskManager taskManager = new InMemoryTaskManager(inMemoryHistoryManager);
         Epic epic1 = new Epic("Эпик1", "Описание эпика1");
         taskManager.createEpic(epic1);
         assertEquals(taskManager.checkIDEpic(1), taskManager.checkIDEpic(1));
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     void checkIdSubtask() {
-        InMemoryTaskManager taskManager = new InMemoryTaskManager();
+        InMemoryHistoryManager inMemoryHistoryManager = new InMemoryHistoryManager();
+        InMemoryTaskManager taskManager = new InMemoryTaskManager(inMemoryHistoryManager);
         Epic epic1 = new Epic("Эпик1", "Описание эпика1");
         Subtask subtask1 = new Subtask("Подзадача 1", "Описание подзадачи 1", epic1);
         taskManager.createSubtask(subtask1);
         assertEquals(taskManager.checkIDSubtask(1), taskManager.checkIDSubtask(1));
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     void checkInMemoryTaskManager() {
-        InMemoryTaskManager taskManager = new InMemoryTaskManager();
+        InMemoryHistoryManager inMemoryHistoryManager = new InMemoryHistoryManager();
+        InMemoryTaskManager taskManager = new InMemoryTaskManager(inMemoryHistoryManager);
         Task task1 = new Task("Задача1", "Описание задачи1");
         Epic epic1 = new Epic("Эпик1", "Описание эпика1");
         Subtask subtask1 = new Subtask("Подзадача 1", "Описание подзадачи 1", epic1);
@@ -50,9 +53,10 @@ public class TaskTest {
         assertNotNull(taskManager.checkIDSubtask(1));
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     void checkTask() {
-        InMemoryTaskManager taskManager = new InMemoryTaskManager();
+        InMemoryHistoryManager inMemoryHistoryManager = new InMemoryHistoryManager();
+        InMemoryTaskManager taskManager = new InMemoryTaskManager(inMemoryHistoryManager);
         Task task1 = new Task("Задача1", "Описание задачи1");
         taskManager.createTask(task1);
         Task task2 = taskManager.tasks.get(1);
@@ -60,9 +64,10 @@ public class TaskTest {
         assertEquals(task1.getDescription(), task2.getDescription());
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     void add() {
-        InMemoryTaskManager taskManager = new InMemoryTaskManager();
+        InMemoryHistoryManager inMemoryHistoryManager = new InMemoryHistoryManager();
+        InMemoryTaskManager taskManager = new InMemoryTaskManager(inMemoryHistoryManager);
         Task task1 = new Task("Задача1", "Описание задачи1");
         taskManager.createTask(task1);
         taskManager.checkIDTask(1);
