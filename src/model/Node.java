@@ -11,5 +11,4 @@ public class Node {
         this.prev = null;
         this.next = null;
     }
-
 }
