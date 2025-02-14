@@ -72,6 +72,5 @@ public class InMemoryHistoryManager implements HistoryManager {
             current = current.next;
         }
         return history;
-    }   
+    }
 }
-
