@@ -73,4 +73,20 @@ public class TaskTest {
         taskManager.checkIDTask(1);
         assertNotNull(taskManager.inMemoryHistoryManager.getHistory());
     }
+    @org.junit.jupiter.api.Test
+    void testRemoveSubtaskAndEpicConsistency() {
+        InMemoryHistoryManager inMemoryHistoryManager = new InMemoryHistoryManager();
+        InMemoryTaskManager taskManager = new InMemoryTaskManager(inMemoryHistoryManager);
+        Epic epic = new Epic("Эпик1", "Epic 1");
+        Subtask subtask1 = new Subtask("Подзадача2", "Subtask 1", epic);
+        Subtask subtask2 = new Subtask("Подзадача3", "Subtask 2", epic);
+
+        inMemoryHistoryManager.add(epic);
+        inMemoryHistoryManager.add(subtask1);
+        inMemoryHistoryManager.add(subtask2);
+
+        inMemoryHistoryManager.remove(2); // Удаляем подзадачу
+
+        assertFalse(epic.getSubtaskIds().contains(2)); // ID подзадачи удалён из эпика
+    }
 }
