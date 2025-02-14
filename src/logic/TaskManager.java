@@ -26,13 +26,13 @@ public interface TaskManager {
 
     Task checkIDTask(int id);
 
-    Epic checkIDEpic(int ID);
+    Epic checkIDEpic(int id);
 
-    Subtask checkIDSubtask(int ID);
+    Subtask checkIDSubtask(int id);
 
     void updateTask(int id, Task task);
 
-    void updateEpic(int ID, Epic epic);
+    void updateEpic(int id, Epic epic);
 
     void updateSubtask(int id, Subtask subtask);
 
